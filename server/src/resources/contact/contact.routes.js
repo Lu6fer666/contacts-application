@@ -16,10 +16,9 @@ const upload = multer({ storage });
 const router = express.Router();
 
 
-
 router.get('/', getAllContacts);
 router.get('/:id', getContactById);
-router.post('/', validate(contactSchema), createContact);
+router.post('/', upload.single("avatar"), validate(contactSchema), createContact);
 router.put('/:id', upload.single('avatar'), validate(contactSchema), updateContact);
 router.delete('/:id', deleteContact);
 

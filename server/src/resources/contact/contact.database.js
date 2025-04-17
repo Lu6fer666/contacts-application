@@ -16,13 +16,17 @@ export const saveContacts = () => {
 };
 
 export const getAll = () => contacts;
+
 export const getById = id => contacts.find(c => c.id === parseInt(id));
+
 export const create = data => {
     const contact = new Contact({ ...data, id: Date.now() });
     contacts.push(contact);
     saveContacts();
+
     return contact;
 };
+
 export const update = (id, data) => {
     const index = contacts.findIndex(c => c.id === parseInt(id));
     if (index === -1) return null;
@@ -30,6 +34,7 @@ export const update = (id, data) => {
     saveContacts();
     return contacts[index];
 };
+
 export const remove = id => {
     contacts = contacts.filter(c => c.id !== parseInt(id));
     saveContacts();
